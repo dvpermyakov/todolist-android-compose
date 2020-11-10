@@ -1,4 +1,4 @@
-package com.dvpermyakov.todolist.ui.main
+package com.dvpermyakov.todolist.home.ui
 
 import androidx.compose.foundation.Text
 import androidx.compose.foundation.layout.*
@@ -39,7 +39,7 @@ fun ButtonsView(
             onClick = onDismiss,
             contentPadding = PaddingValues(8.dp)
         ) {
-            Text(text = "ok")
+            Text(text = "Ok")
         }
     }
 }

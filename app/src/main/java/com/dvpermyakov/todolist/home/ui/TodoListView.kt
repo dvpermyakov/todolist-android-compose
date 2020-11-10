@@ -1,4 +1,4 @@
-package com.dvpermyakov.todolist.ui.main
+package com.dvpermyakov.todolist.home.ui
 
 import androidx.compose.foundation.Icon
 import androidx.compose.foundation.ScrollableColumn
