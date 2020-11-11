@@ -1,4 +1,4 @@
-package com.dvpermyakov.todolist.home.ui
+package com.dvpermyakov.todolist.list.ui
 
 import androidx.compose.foundation.Icon
 import androidx.compose.foundation.ScrollableColumn
@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.viewModel
 import androidx.ui.tooling.preview.Preview
 import com.dvpermyakov.todolist.R
-import com.dvpermyakov.todolist.home.presentation.HomeViewModel
+import com.dvpermyakov.todolist.list.presentation.HomeViewModel
 
 @Composable
 fun TodoListView(
