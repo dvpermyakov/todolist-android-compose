@@ -12,14 +12,14 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.viewinterop.viewModel
 import androidx.ui.tooling.preview.Preview
 import com.dvpermyakov.todolist.R
+import com.dvpermyakov.todolist.home.presentation.HomeViewModel
 
 @Composable
 fun TodoListView(
-    items: List<TodoItem>,
-    onAddClick: () -> Unit,
-    onItemClick: (TodoItem) -> Unit
+    viewModel: HomeViewModel = viewModel()
 ) {
     Scaffold(
         topBar = {
@@ -30,7 +30,7 @@ fun TodoListView(
             )
         },
         floatingActionButton = {
-            FloatingActionButton(onClick = onAddClick) {
+            FloatingActionButton(onClick = viewModel::onAddClick) {
                 Icon(Icons.Default.Add)
             }
         }
@@ -38,8 +38,13 @@ fun TodoListView(
         ScrollableColumn(
             contentPadding = PaddingValues(8.dp)
         ) {
-            items.forEach { item ->
-                TodoItemView(item = item, onClick = onItemClick)
+            viewModel.items.forEach { item ->
+                TodoItemView(
+                    item = item,
+                    onClick = { todoItem ->
+                        viewModel.onTodoItemClick(todoItem)
+                    }
+                )
             }
         }
     }
@@ -48,19 +53,5 @@ fun TodoListView(
 @Preview
 @Composable
 fun PreviewTodoList() {
-    val item = TodoItem(
-        image = 0,
-        title = "Need to improve android article about Compose",
-        description = "Need not only improve, but rewrite some code as well. Good to do it as soon as possible"
-    )
-    val item2 = TodoItem(
-        image = R.drawable.ic_cat,
-        title = "1",
-        description = "1"
-    )
-    TodoListView(
-        items = listOf(item, item, item, item2),
-        onAddClick = {},
-        onItemClick = {}
-    )
+    TodoListView()
 }
