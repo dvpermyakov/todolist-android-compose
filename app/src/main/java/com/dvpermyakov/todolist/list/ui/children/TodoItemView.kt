@@ -7,8 +7,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -19,25 +17,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.ui.tooling.preview.Preview
 import com.dvpermyakov.todolist.R
-
-data class TodoItem(
-    val image: Int,
-    val title: String,
-    val description: String
-)
+import com.dvpermyakov.todolist.list.domain.TodoItem
 
 @Composable
 fun TodoItemView(
     item: TodoItem,
     onClick: (TodoItem) -> Unit
 ) {
-    val openDialog = remember { mutableStateOf(false) }
-    if (openDialog.value) {
-        TodoAlertDialog {
-            openDialog.value = false
-        }
-    }
-
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -47,7 +33,7 @@ fun TodoItemView(
         Row(
             modifier = Modifier
                 .clickable(onClick = {
-                    openDialog.value = true
+                   onClick(item)
                 })
                 .padding(start = 8.dp, top = 8.dp, bottom = 8.dp),
             verticalAlignment = Alignment.CenterVertically

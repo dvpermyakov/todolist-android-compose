@@ -2,7 +2,7 @@ package com.dvpermyakov.todolist.list.presentation
 
 import androidx.lifecycle.ViewModel
 import com.dvpermyakov.todolist.R
-import com.dvpermyakov.todolist.list.ui.children.TodoItem
+import com.dvpermyakov.todolist.list.domain.TodoItem
 
 class TodoListViewModel : ViewModel() {
     val items = (1..2).map { index ->
@@ -11,13 +11,5 @@ class TodoListViewModel : ViewModel() {
             title = index.toString(),
             description = index.toString()
         )
-    }
-
-    fun onTodoItemClick(item: TodoItem) {
-
-    }
-
-    fun onAddClick() {
-
     }
 }
