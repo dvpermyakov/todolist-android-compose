@@ -12,7 +12,7 @@ import com.dvpermyakov.todolist.list.ui.TodoListView
 fun MainView() {
     MaterialTheme {
         val currentScreen = remember { mutableStateOf<Screen>(Screen.TodoList) }
-        when (currentScreen.value) {
+        when (val screen = currentScreen.value) {
             is Screen.TodoList -> {
                 TodoListView(
                     onAddClick = {
@@ -34,7 +34,12 @@ fun MainView() {
                 )
             }
             is Screen.TodoItemDetails -> {
-                TodoItemDetails()
+                TodoItemDetails(
+                    item = screen.item,
+                    onBack = {
+                        currentScreen.value = Screen.TodoList
+                    }
+                )
             }
         }
     }
