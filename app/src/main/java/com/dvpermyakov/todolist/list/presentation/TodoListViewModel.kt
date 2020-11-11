@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import com.dvpermyakov.todolist.R
 import com.dvpermyakov.todolist.list.ui.TodoItem
 
-class HomeViewModel : ViewModel() {
+class TodoListViewModel : ViewModel() {
     val items = (1..2).map { index ->
         TodoItem(
             image = R.drawable.ic_cat,

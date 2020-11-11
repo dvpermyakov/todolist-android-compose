@@ -15,11 +15,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.viewModel
 import androidx.ui.tooling.preview.Preview
 import com.dvpermyakov.todolist.R
-import com.dvpermyakov.todolist.list.presentation.HomeViewModel
+import com.dvpermyakov.todolist.list.presentation.TodoListViewModel
 
 @Composable
 fun TodoListView(
-    viewModel: HomeViewModel = viewModel()
+    viewModel: TodoListViewModel = viewModel()
 ) {
     Scaffold(
         topBar = {
