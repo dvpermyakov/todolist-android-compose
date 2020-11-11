@@ -6,8 +6,10 @@ import androidx.compose.material.AlertDialog
 import androidx.compose.material.Button
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.ui.tooling.preview.Preview
+import com.dvpermyakov.todolist.R
 
 @Composable
 fun TodoAlertDialog(
@@ -19,10 +21,10 @@ fun TodoAlertDialog(
             ButtonsView(onDismiss)
         },
         title = {
-            Text(text = "Welcome to todo list!")
+            Text(stringResource(R.string.todo_welcome_dialog_title))
         },
         text = {
-            Text("You can create your own todo list. Just click on Add button!")
+            Text(stringResource(R.string.todo_welcome_dialog_subtitle))
         }
     )
 }
@@ -39,7 +41,7 @@ fun ButtonsView(
             onClick = onDismiss,
             contentPadding = PaddingValues(8.dp)
         ) {
-            Text(text = "Ok")
+            Text(stringResource(R.string.todo_welcome_dialog_action))
         }
     }
 }
