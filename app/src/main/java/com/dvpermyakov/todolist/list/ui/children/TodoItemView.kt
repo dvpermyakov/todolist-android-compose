@@ -1,4 +1,4 @@
-package com.dvpermyakov.todolist.list.ui
+package com.dvpermyakov.todolist.list.ui.children
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.Text

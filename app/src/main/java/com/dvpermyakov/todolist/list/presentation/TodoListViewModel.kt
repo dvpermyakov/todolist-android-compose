@@ -2,7 +2,7 @@ package com.dvpermyakov.todolist.list.presentation
 
 import androidx.lifecycle.ViewModel
 import com.dvpermyakov.todolist.R
-import com.dvpermyakov.todolist.list.ui.TodoItem
+import com.dvpermyakov.todolist.list.ui.children.TodoItem
 
 class TodoListViewModel : ViewModel() {
     val items = (1..2).map { index ->

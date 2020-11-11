@@ -16,6 +16,7 @@ import androidx.compose.ui.viewinterop.viewModel
 import androidx.ui.tooling.preview.Preview
 import com.dvpermyakov.todolist.R
 import com.dvpermyakov.todolist.list.presentation.TodoListViewModel
+import com.dvpermyakov.todolist.list.ui.children.TodoItemView
 
 @Composable
 fun TodoListView(
