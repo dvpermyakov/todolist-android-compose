@@ -22,7 +22,7 @@ import com.dvpermyakov.todolist.list.domain.TodoItem
 @Composable
 fun TodoItemView(
     item: TodoItem,
-    onClick: (TodoItem) -> Unit
+    onClick: () -> Unit
 ) {
     Card(
         modifier = Modifier
@@ -32,9 +32,7 @@ fun TodoItemView(
     ) {
         Row(
             modifier = Modifier
-                .clickable(onClick = {
-                   onClick(item)
-                })
+                .clickable(onClick = onClick)
                 .padding(start = 8.dp, top = 8.dp, bottom = 8.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {

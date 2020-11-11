@@ -14,10 +14,24 @@ fun MainView() {
         val currentScreen = remember { mutableStateOf<Screen>(Screen.TodoList) }
         when (currentScreen.value) {
             is Screen.TodoList -> {
-                TodoListView(currentScreen)
+                TodoListView(
+                    onAddClick = {
+                        currentScreen.value = Screen.AddTodoItem
+                    },
+                    onItemClick = { item ->
+                        currentScreen.value = Screen.TodoItemDetails(item)
+                    }
+                )
             }
             is Screen.AddTodoItem -> {
-                AddTodoView()
+                AddTodoView(
+                    onBack = {
+                        currentScreen.value = Screen.TodoList
+                    },
+                    onSuccess = { value ->
+                        currentScreen.value = Screen.TodoList
+                    }
+                )
             }
             is Screen.TodoItemDetails -> {
                 TodoItemDetails()

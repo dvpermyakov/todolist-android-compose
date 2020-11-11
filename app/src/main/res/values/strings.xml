@@ -3,4 +3,6 @@
     <string name="todo_welcome_dialog_title">Welcome to todo list!</string>
     <string name="todo_welcome_dialog_subtitle">You can easily add new items!</string>
     <string name="todo_welcome_dialog_action">Done</string>
+    <string name="add_todo_appbar">Add new todo</string>
+    <string name="add_todo_title_label">Todo title</string>
 </resources>
