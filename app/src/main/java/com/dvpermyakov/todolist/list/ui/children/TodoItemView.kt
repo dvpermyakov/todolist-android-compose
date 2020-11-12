@@ -49,7 +49,7 @@ fun TodoItemView(
             ) {
                 Text(
                     text = item.title,
-                    color = Color.Black,
+                    color = Color.White,
                     fontSize = 12.sp
                 )
                 Text(
