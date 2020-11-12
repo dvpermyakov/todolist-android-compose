@@ -1,7 +1,7 @@
 package com.dvpermyakov.todolist.main
 
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.darkColors
+import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -12,7 +12,7 @@ import com.dvpermyakov.todolist.list.ui.TodoListView
 @Composable
 fun MainView() {
     MaterialTheme(
-        colors = darkColors()
+        colors = lightColors()
     ) {
         val currentScreen = remember { mutableStateOf<Screen>(Screen.TodoList) }
         when (val screen = currentScreen.value) {
