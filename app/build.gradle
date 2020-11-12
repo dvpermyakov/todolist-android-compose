@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-android-extensions'
 }
 
 android {
@@ -70,6 +71,8 @@ dependencies {
     implementation 'androidx.compose.runtime:runtime-rxjava2:1.0.0-alpha07'
     // Animation
     implementation 'androidx.compose.animation:animation:1.0.0-alpha07'
+    // Navigation
+    implementation 'androidx.navigation:navigation-compose:1.0.0-alpha02'
 
     // UI Tests
     androidTestImplementation 'androidx.ui:ui-test:1.0.0-alpha07'

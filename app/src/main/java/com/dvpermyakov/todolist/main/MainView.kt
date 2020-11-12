@@ -3,10 +3,14 @@ package com.dvpermyakov.todolist.main
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.navigate
+import androidx.navigation.compose.rememberNavController
+import com.dvpermyakov.todolist.R
 import com.dvpermyakov.todolist.add.ui.AddTodoView
 import com.dvpermyakov.todolist.detaills.ui.TodoItemDetails
+import com.dvpermyakov.todolist.list.domain.TodoItem
 import com.dvpermyakov.todolist.list.ui.TodoListView
 
 @Composable
@@ -14,33 +18,33 @@ fun MainView() {
     MaterialTheme(
         colors = lightColors()
     ) {
-        val currentScreen = remember { mutableStateOf<Screen>(Screen.TodoList) }
-        when (val screen = currentScreen.value) {
-            is Screen.TodoList -> {
+        val navController = rememberNavController()
+        NavHost(navController, startDestination = Screen.TodoList.route) {
+            composable(Screen.TodoList.route) {
                 TodoListView(
                     onAddClick = {
-                        currentScreen.value = Screen.AddTodoItem
+                        navController.navigate(Screen.AddTodoItem.route)
                     },
                     onItemClick = { item ->
-                        currentScreen.value = Screen.TodoItemDetails(item)
+                        navController.navigate(Screen.TodoItemDetails.route)
                     }
                 )
             }
-            is Screen.AddTodoItem -> {
+            composable(Screen.AddTodoItem.route) {
                 AddTodoView(
                     onBack = {
-                        currentScreen.value = Screen.TodoList
+                        navController.popBackStack()
                     },
                     onSuccess = { value ->
-                        currentScreen.value = Screen.TodoList
+                        navController.popBackStack()
                     }
                 )
             }
-            is Screen.TodoItemDetails -> {
+            composable(Screen.TodoItemDetails.route) { entry ->
                 TodoItemDetails(
-                    item = screen.item,
+                    item = TodoItem(R.drawable.ic_cat, "title", "description"),
                     onBack = {
-                        currentScreen.value = Screen.TodoList
+                        navController.popBackStack()
                     }
                 )
             }

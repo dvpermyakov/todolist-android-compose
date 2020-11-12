@@ -1,9 +1,7 @@
 package com.dvpermyakov.todolist.main
 
-import com.dvpermyakov.todolist.list.domain.TodoItem
-
-sealed class Screen {
-    object TodoList : Screen()
-    data class TodoItemDetails(val item: TodoItem) : Screen()
-    object AddTodoItem : Screen()
+sealed class Screen(val route: String) {
+    object TodoList : Screen("list")
+    object TodoItemDetails : Screen("details")
+    object AddTodoItem : Screen("add")
 }
