@@ -1,7 +1,5 @@
 package com.dvpermyakov.todolist.add.ui
 
-import androidx.compose.foundation.Icon
-import androidx.compose.foundation.Text
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
