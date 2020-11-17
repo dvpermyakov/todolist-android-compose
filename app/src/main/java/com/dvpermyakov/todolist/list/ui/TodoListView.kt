@@ -37,6 +37,13 @@ fun TodoListView(
             TopAppBar(
                 title = {
                     Text(stringResource(R.string.app_name))
+                },
+                actions = {
+                    IconButton(onClick = {
+                        viewModel.addDefaultTodoItem()
+                    }) {
+                        Icon(Icons.Filled.Add)
+                    }
                 }
             )
         },
