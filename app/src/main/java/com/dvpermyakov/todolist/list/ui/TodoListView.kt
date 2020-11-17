@@ -1,5 +1,6 @@
 package com.dvpermyakov.todolist.list.ui
 
+import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.ScrollableColumn
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.material.*
@@ -7,6 +8,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.viewModel
@@ -54,6 +56,7 @@ fun TodoListView(
         }
     ) {
         ScrollableColumn(
+            modifier = Modifier.animateContentSize(),
             contentPadding = PaddingValues(8.dp)
         ) {
             items.value?.forEach { item ->
