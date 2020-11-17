@@ -1,6 +1,8 @@
 package com.dvpermyakov.todolist.list.ui
 
+import androidx.compose.animation.Crossfade
 import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.ScrollableColumn
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.material.*
@@ -18,6 +20,7 @@ import com.dvpermyakov.todolist.list.domain.TodoItem
 import com.dvpermyakov.todolist.list.presentation.TodoListViewModel
 import com.dvpermyakov.todolist.list.ui.children.TodoAlertDialog
 import com.dvpermyakov.todolist.list.ui.children.TodoItemView
+import com.dvpermyakov.todolist.list.ui.children.TodoLoadingView
 import com.dvpermyakov.todolist.main.ui.ViewModelFactory
 
 @Composable
@@ -26,6 +29,7 @@ fun TodoListView(
     onItemClick: (TodoItem) -> Unit,
     viewModel: TodoListViewModel = viewModel(factory = ViewModelFactory)
 ) {
+    val loading = viewModel.loading.observeAsState(initial = true)
     val items = viewModel.items.observeAsState()
 
     val openDialog = viewModel.showDialog.observeAsState(initial = false)
@@ -55,17 +59,26 @@ fun TodoListView(
             }
         }
     ) {
-        ScrollableColumn(
-            modifier = Modifier.animateContentSize(),
-            contentPadding = PaddingValues(8.dp)
-        ) {
-            items.value?.forEach { item ->
-                TodoItemView(
-                    item = item,
-                    onClick = {
-                        onItemClick(item)
+        Crossfade(
+            current = loading,
+            animation = tween()
+        ) { loadingState ->
+            if (loadingState.value) {
+                TodoLoadingView()
+            } else {
+                ScrollableColumn(
+                    modifier = Modifier.animateContentSize(),
+                    contentPadding = PaddingValues(8.dp)
+                ) {
+                    items.value?.forEach { item ->
+                        TodoItemView(
+                            item = item,
+                            onClick = {
+                                onItemClick(item)
+                            }
+                        )
                     }
-                )
+                }
             }
         }
     }
