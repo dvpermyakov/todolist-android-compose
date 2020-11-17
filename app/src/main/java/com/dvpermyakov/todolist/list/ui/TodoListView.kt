@@ -6,8 +6,7 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.viewModel
@@ -24,10 +23,10 @@ fun TodoListView(
     onItemClick: (TodoItem) -> Unit,
     viewModel: TodoListViewModel = viewModel()
 ) {
-    val openDialog = remember { mutableStateOf(true) }
+    val openDialog = viewModel.showDialog.observeAsState(initial = false)
     if (openDialog.value) {
         TodoAlertDialog {
-            openDialog.value = false
+            viewModel.dialogShown()
         }
     }
     Scaffold(
@@ -62,5 +61,5 @@ fun TodoListView(
 @Preview
 @Composable
 fun PreviewTodoList() {
-//    TodoListView(mutableListOf(Router.Screen.AddTodo))
+    TodoListView({}, {})
 }
