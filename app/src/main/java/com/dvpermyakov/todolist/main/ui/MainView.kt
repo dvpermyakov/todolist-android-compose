@@ -34,9 +34,6 @@ fun MainView() {
                 AddTodoView(
                     onBack = {
                         navController.popBackStack()
-                    },
-                    onSuccess = { value ->
-                        navController.popBackStack()
                     }
                 )
             }

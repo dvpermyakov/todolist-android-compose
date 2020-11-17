@@ -16,13 +16,16 @@ import com.dvpermyakov.todolist.list.domain.TodoItem
 import com.dvpermyakov.todolist.list.presentation.TodoListViewModel
 import com.dvpermyakov.todolist.list.ui.children.TodoAlertDialog
 import com.dvpermyakov.todolist.list.ui.children.TodoItemView
+import com.dvpermyakov.todolist.main.ui.ViewModelFactory
 
 @Composable
 fun TodoListView(
     onAddClick: () -> Unit,
     onItemClick: (TodoItem) -> Unit,
-    viewModel: TodoListViewModel = viewModel()
+    viewModel: TodoListViewModel = viewModel(factory = ViewModelFactory)
 ) {
+    val items = viewModel.items.observeAsState()
+
     val openDialog = viewModel.showDialog.observeAsState(initial = false)
     if (openDialog.value) {
         TodoAlertDialog {
@@ -46,7 +49,7 @@ fun TodoListView(
         ScrollableColumn(
             contentPadding = PaddingValues(8.dp)
         ) {
-            viewModel.items.forEach { item ->
+            items.value?.forEach { item ->
                 TodoItemView(
                     item = item,
                     onClick = {
