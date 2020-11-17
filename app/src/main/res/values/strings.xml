@@ -5,5 +5,8 @@
     <string name="todo_welcome_dialog_action">Done</string>
     <string name="add_todo_appbar">Add new todo</string>
     <string name="add_todo_title_label">Todo title</string>
+    <string name="add_todo_description_label">Todo description</string>
     <string name="todo_item_details_appbar">%s info</string>
+    <string name="todo_add_new_item_success_title">You created a new item!</string>
+    <string name="todo_add_new_item_success_action">Hide</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.dvpermyakov.todolist.add.ui
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -24,6 +25,8 @@ fun AddTodoView(
     viewModel: AddTodoViewModel = viewModel(factory = ViewModelFactory)
 ) {
     val titleState = remember { mutableStateOf("") }
+    val descriptionState = remember { mutableStateOf("") }
+    val showSnackBar = remember { mutableStateOf(false) }
 
     Scaffold(
         topBar = {
@@ -44,24 +47,54 @@ fun AddTodoView(
                     TodoItem(
                         image = R.drawable.ic_cat,
                         title = titleState.value,
-                        description = titleState.value
+                        description = descriptionState.value
                     )
                 )
+                titleState.value = ""
+                descriptionState.value = ""
+                showSnackBar.value = true
             }) {
                 Icon(
                     asset = Icons.Default.Done
                 )
             }
+        },
+        snackbarHost = {
+            if (showSnackBar.value) {
+                Snackbar(
+                    modifier = Modifier.padding(16.dp),
+                    text = { Text(stringResource(R.string.todo_add_new_item_success_title)) },
+                    action = {
+                        TextButton(
+                            onClick = {
+                                showSnackBar.value = false
+                            }
+                        ) {
+                            Text(stringResource(R.string.todo_add_new_item_success_action))
+                        }
+                    }
+                )
+            }
         }
     ) {
-        TextField(
-            value = titleState.value,
-            onValueChange = { value ->
-                titleState.value = value
-            },
-            modifier = Modifier.padding(8.dp),
-            label = { Text(stringResource(R.string.add_todo_title_label)) }
-        )
+        Column {
+            TextField(
+                value = titleState.value,
+                onValueChange = { value ->
+                    titleState.value = value
+                },
+                modifier = Modifier.padding(8.dp),
+                label = { Text(stringResource(R.string.add_todo_title_label)) }
+            )
+            TextField(
+                value = descriptionState.value,
+                onValueChange = { value ->
+                    descriptionState.value = value
+                },
+                modifier = Modifier.padding(8.dp),
+                label = { Text(stringResource(R.string.add_todo_description_label)) }
+            )
+        }
     }
 }
 
