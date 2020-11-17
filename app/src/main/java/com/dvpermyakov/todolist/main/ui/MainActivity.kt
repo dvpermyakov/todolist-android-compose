@@ -1,4 +1,4 @@
-package com.dvpermyakov.todolist.main
+package com.dvpermyakov.todolist.main.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

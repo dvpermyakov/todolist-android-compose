@@ -1,4 +1,4 @@
-package com.dvpermyakov.todolist.main
+package com.dvpermyakov.todolist.main.ui
 
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.lightColors
