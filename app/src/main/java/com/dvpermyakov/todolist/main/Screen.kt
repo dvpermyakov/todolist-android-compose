@@ -1,4 +1,4 @@
-package com.dvpermyakov.todolist.main.ui
+package com.dvpermyakov.todolist.main
 
 sealed class Screen(val route: String) {
     object TodoList : Screen("list")

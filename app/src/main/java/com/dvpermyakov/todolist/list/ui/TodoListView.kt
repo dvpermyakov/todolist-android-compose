@@ -21,7 +21,7 @@ import com.dvpermyakov.todolist.list.presentation.TodoListViewModel
 import com.dvpermyakov.todolist.list.ui.children.TodoAlertDialog
 import com.dvpermyakov.todolist.list.ui.children.TodoItemView
 import com.dvpermyakov.todolist.list.ui.children.TodoLoadingView
-import com.dvpermyakov.todolist.main.ui.ViewModelFactory
+import com.dvpermyakov.todolist.main.ViewModelFactory
 
 @Composable
 fun TodoListView(

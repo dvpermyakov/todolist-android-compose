@@ -17,7 +17,7 @@ import androidx.ui.tooling.preview.Preview
 import com.dvpermyakov.todolist.R
 import com.dvpermyakov.todolist.add.presentation.AddTodoViewModel
 import com.dvpermyakov.todolist.list.domain.TodoItem
-import com.dvpermyakov.todolist.main.ui.ViewModelFactory
+import com.dvpermyakov.todolist.main.ViewModelFactory
 
 @Composable
 fun AddTodoView(

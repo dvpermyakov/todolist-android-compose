@@ -1,4 +1,4 @@
-package com.dvpermyakov.todolist.main.ui
+package com.dvpermyakov.todolist.main
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
