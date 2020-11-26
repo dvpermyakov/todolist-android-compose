@@ -3,16 +3,13 @@ package com.dvpermyakov.todolist.main.ui
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.navigate
-import androidx.navigation.compose.rememberNavController
-import com.dvpermyakov.todolist.R
+import androidx.navigation.NavType
+import androidx.navigation.compose.*
 import com.dvpermyakov.todolist.add.ui.AddTodoView
 import com.dvpermyakov.todolist.detaills.ui.TodoItemDetails
-import com.dvpermyakov.todolist.list.domain.TodoItem
 import com.dvpermyakov.todolist.list.ui.TodoListView
 import com.dvpermyakov.todolist.main.Screen
+import com.dvpermyakov.todolist.main.createRoute
 
 @Composable
 fun MainView() {
@@ -27,7 +24,7 @@ fun MainView() {
                         navController.navigate(Screen.AddTodoItem.route)
                     },
                     onItemClick = { item ->
-                        navController.navigate(Screen.TodoItemDetails.route)
+                        navController.navigate(Screen.TodoItemDetails.createRoute(item))
                     }
                 )
             }
@@ -38,13 +35,20 @@ fun MainView() {
                     }
                 )
             }
-            composable(Screen.TodoItemDetails.route) { entry ->
-                TodoItemDetails(
-                    item = TodoItem(R.drawable.ic_cat, "title", "description"),
-                    onBack = {
-                        navController.popBackStack()
-                    }
+            composable(
+                route = Screen.TodoItemDetails.route,
+                arguments = listOf(
+                    navArgument("itemId") { type = NavType.StringType }
                 )
+            ) { entry ->
+                entry.arguments?.getString("itemId")?.let { itemId ->
+                    TodoItemDetails(
+                        onBack = {
+                            navController.popBackStack()
+                        },
+                        itemId = itemId
+                    )
+                }
             }
         }
     }

@@ -67,6 +67,7 @@ fun TodoItemView(
 fun PreviewTodoItem() {
     TodoItemView(
         TodoItem(
+            id = "",
             image = 0,
             title = "Need to improve android article about Compose",
             description = "Need not only improve, but rewrite some code as well. Good to do it as soon as possible"

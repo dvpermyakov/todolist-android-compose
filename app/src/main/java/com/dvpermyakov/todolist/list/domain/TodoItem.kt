@@ -5,6 +5,7 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class TodoItem(
+    val id: String,
     val image: Int,
     val title: String,
     val description: String

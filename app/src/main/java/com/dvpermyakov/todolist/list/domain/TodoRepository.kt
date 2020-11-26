@@ -4,5 +4,6 @@ import androidx.lifecycle.LiveData
 
 interface TodoRepository {
     fun getItems(): LiveData<List<TodoItem>>
-    fun addItem(item: TodoItem)
+    fun addItem(title: String, description: String)
+    fun getItem(id: String): LiveData<TodoItem?>
 }

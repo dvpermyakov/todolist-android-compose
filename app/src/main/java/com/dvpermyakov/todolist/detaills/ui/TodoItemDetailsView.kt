@@ -1,33 +1,31 @@
 package com.dvpermyakov.todolist.detaills.ui
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.imageResource
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
-import androidx.ui.tooling.preview.Preview
+import androidx.compose.ui.viewinterop.viewModel
 import com.dvpermyakov.todolist.R
-import com.dvpermyakov.todolist.list.domain.TodoItem
+import com.dvpermyakov.todolist.detaills.presentation.TodoItemDetailsViewModel
+import com.dvpermyakov.todolist.detaills.ui.children.LoadingView
+import com.dvpermyakov.todolist.detaills.ui.children.TodoItemDetailsFullscreenView
+import com.dvpermyakov.todolist.main.ViewModelFactory
 
 @Composable
 fun TodoItemDetails(
     onBack: () -> Unit,
-    item: TodoItem
+    itemId: String,
+    viewModel: TodoItemDetailsViewModel = viewModel(factory = ViewModelFactory)
 ) {
+    val item = viewModel.getItem(itemId).observeAsState(null)
+
     Scaffold(
         topBar = {
             TopAppBar(
                 title = {
-                    Text(stringResource(R.string.todo_item_details_appbar, item.title))
+                    Text(stringResource(R.string.todo_item_details_appbar))
                 },
                 navigationIcon = {
                     IconButton(onClick = onBack) {
@@ -37,39 +35,10 @@ fun TodoItemDetails(
             )
         }
     ) {
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier.fillMaxWidth().padding(16.dp)
-        ) {
-            Text(
-                text = item.title
-            )
-            Text(
-                text = item.description,
-                modifier = Modifier.padding(top = 8.dp)
-            )
-            Image(
-                asset = imageResource(id = R.drawable.ic_cat),
-                modifier = Modifier
-                    .width(256.dp)
-                    .height(256.dp)
-                    .clip(RoundedCornerShape(8.dp))
-                    .padding(top = 8.dp),
-                contentScale = ContentScale.Crop
-            )
+        if (item.value != null) {
+            TodoItemDetailsFullscreenView(item.value!!)
+        } else {
+            LoadingView()
         }
     }
-}
-
-@Preview
-@Composable
-fun PreviewTodoItemDetails() {
-    TodoItemDetails(
-        {},
-        TodoItem(
-            image = 0,
-            title = "Need to improve android article about Compose",
-            description = "Need not only improve, but rewrite some code as well. Good to do it as soon as possible"
-        )
-    )
 }

@@ -16,7 +16,6 @@ import androidx.compose.ui.viewinterop.viewModel
 import androidx.ui.tooling.preview.Preview
 import com.dvpermyakov.todolist.R
 import com.dvpermyakov.todolist.add.presentation.AddTodoViewModel
-import com.dvpermyakov.todolist.list.domain.TodoItem
 import com.dvpermyakov.todolist.main.ViewModelFactory
 
 @Composable
@@ -44,11 +43,8 @@ fun AddTodoView(
         floatingActionButton = {
             FloatingActionButton(onClick = {
                 viewModel.addItem(
-                    TodoItem(
-                        image = R.drawable.ic_cat,
-                        title = titleState.value,
-                        description = descriptionState.value
-                    )
+                    title = titleState.value,
+                    description = descriptionState.value
                 )
                 titleState.value = ""
                 descriptionState.value = ""

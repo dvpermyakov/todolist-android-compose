@@ -4,7 +4,6 @@ import android.os.Handler
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.dvpermyakov.todolist.R
 import com.dvpermyakov.todolist.list.domain.TodoItem
 import com.dvpermyakov.todolist.list.domain.TodoRepository
 
@@ -22,12 +21,10 @@ class TodoListViewModel(
         get() = repository.getItems()
 
     init {
-        val item = TodoItem(
-            image = R.drawable.ic_cat,
+        repository.addItem(
             title = "First title",
             description = "First description"
         )
-        repository.addItem(item)
         Handler().postDelayed({
             _loading.value = false
         }, 1_000)
@@ -38,11 +35,9 @@ class TodoListViewModel(
     }
 
     fun addDefaultTodoItem() {
-        val item = TodoItem(
-            image = R.drawable.ic_cat,
+        repository.addItem(
             title = "Default title",
             description = "Default description"
         )
-        repository.addItem(item)
     }
 }
